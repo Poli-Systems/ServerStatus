@@ -89,6 +89,10 @@ DAEMON="sergate"
 OPTS="-d $WEB_PATH"
 RUNAS="www-data"
 ```
+Make it runable
+```
+chmod +x /etc/init.d/sergate
+```
 Start the service by running as root
 ```
 service sergate start
@@ -96,6 +100,10 @@ service sergate start
 Add it to the autostart by running as root
 ```
 update-rc.d sergate defaults
+```
+Start the service by running as root
+```
+service sergate start
 ```
 
 #### Arch Linux and other systemd based systems
