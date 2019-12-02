@@ -63,7 +63,7 @@ user_input ()
 
 echo
 echo "ServerStatus Client Setup Script"
-echo "https://github.com/BotoX/ServerStatus"
+echo "https://github.com/IIPoliII/ServerStatus"
 echo
 
 echo "Which client implementation do you want to use? [${bold}python${normal}, python-psutil, bash]"
