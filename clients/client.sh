@@ -112,8 +112,8 @@ while $RUNNING; do
 
 		# Network traffic
 		NET=($(grep ":" /proc/net/dev | grep -v -e "lo" -e "tun" | awk '{a+=$2}{b+=$10}END{printf "%f %f\n", a,b}'))
-		NetRx="${NET[0]}"
-		NetTx="${NET[1]}"
+		NetRx=$(echo ${NET[0]} | cut -f1 -d".")
+		NetTx=$(echo ${NET[1]} | cut -f1 -d".")
 		if [ "$PREV_NetRx" == "" ]; then
 			PREV_NetRx="$NetRx"
 			PREV_NetTx="$NetTx"
