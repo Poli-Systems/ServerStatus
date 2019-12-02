@@ -111,7 +111,7 @@ while $RUNNING; do
 		PREV_IDLE="$IDLE"
 
 		# Network traffic
-		NET=($(grep ":" /proc/net/dev | grep -v -e "lo" -e "tun" | awk '{a+=$2}{b+=$10}END{print a,b}'))
+		NET=($(grep ":" /proc/net/dev | grep -v -e "lo" -e "tun" | awk '{a+=$2}{b+=$10}END{printf "%f %f\n", a,b}'))
 		NetRx="${NET[0]}"
 		NetTx="${NET[1]}"
 		if [ "$PREV_NetRx" == "" ]; then
@@ -120,8 +120,8 @@ while $RUNNING; do
 		fi
 		let "SpeedRx=($NetRx-$PREV_NetRx)/$INTERVAL"
 		let "SpeedTx=($NetTx-$PREV_NetTx)/$INTERVAL"
-		PREV_NetRx="$NetRx"
-		PREV_NetTx="$NetTx"
+		PREV_NetRx=$(echo $NetRx | awk '{ printf("%11.3f %11.3f\n", $1,$2) }' | tr -d ' ' | cut -f1 -d".")
+		PREV_NetTx=$(echo $NetTx | awk '{ printf("%11.3f %11.3f\n", $1,$2) }' | tr -d ' ' | cut -f1 -d".")
 
 		echo -e "update {$Online \"uptime\": $Uptime, \"load\": $Load, \"memory_total\": $MemTotal, \"memory_used\": $MemUsed, \"swap_total\": $SwapTotal, \"swap_used\": $SwapUsed, \"hdd_total\": $HDDTotal, \"hdd_used\": $HDDUsed, \"cpu\": ${DIFF_USAGE}.0, \"network_rx\": $SpeedRx, \"network_tx\": $SpeedTx }"
 	done | $NETBIN $SERVER $PORT | while IFS= read -r -d $'\0' x; do
