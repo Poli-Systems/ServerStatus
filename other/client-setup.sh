@@ -3,9 +3,9 @@
 normal=$(tput sgr0)
 bold=$(tput bold)
 
-PYTHON_CLIENT="https://raw.githubusercontent.com/BotoX/ServerStatus/master/clients/client.py"
-PYTHONPSUTIL_CLIENT="https://raw.githubusercontent.com/BotoX/ServerStatus/master/clients/client-psutil.py"
-BASH_CLIENT="https://raw.githubusercontent.com/BotoX/ServerStatus/master/clients/client.sh"
+PYTHON_CLIENT="https://raw.githubusercontent.com/IIPoliII/ServerStatus/master/clients/client.py"
+PYTHONPSUTIL_CLIENT="https://raw.githubusercontent.com/IIPoliII/ServerStatus/master/clients/client-psutil.py"
+BASH_CLIENT="https://raw.githubusercontent.com/IIPoliII/ServerStatus/master/clients/client.sh"
 
 CWD=$(pwd)
 
