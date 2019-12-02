@@ -147,7 +147,7 @@ The bash script client-setup.sh in other/ is an easy way to set up a new client.
 You need to have wget and ca-certificates (or use wget --no-check-certificate) installed for it to work.
 You could run it like this:
 ```
-wget https://raw.github.com/BotoX/ServerStatus/master/other/client-setup.sh
+wget https://raw.github.com/IIPoliII/ServerStatus/master/other/client-setup.sh
 bash client-setup.sh
 ```
 The script will also detect wether you're using systemd or SysVinit and ask you wether it should create a service/autostart for the client.
