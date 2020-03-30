@@ -3,7 +3,7 @@
 ServerStatus is a full rewrite of [mojeda's](https://github.com/mojeda) [ServerStatus](https://github.com/mojeda/ServerStatus) script, which in turn is a modified version of [BlueVM's](http://www.lowendtalk.com/discussion/comment/169690#Comment_169690) script.
 
 ### Live demo:
-* https://status.botox.bz/
+* https://poli.network
 
 There are many things which I dislike about the original script, for example:
 * requires webserver and PHP for every client
@@ -28,10 +28,12 @@ The way my ServerStatus works is as following:
 ## Master Server
 Name "sergate" given by Dasiel :)
 
+You will need `g++ make` (you can get it with `apt install g++ make -y` for exemple)
+
 Switch to a non-privileged user or create one.
 Port 35601 needs to be free and forwarded/open for running the server.
 ```
-git clone https://github.com/BotoX/ServerStatus.git
+git clone https://github.com/IIPoliII/ServerStatus.git
 cd ServerStatus/server
 make
 ./sergate
