@@ -71,11 +71,31 @@ function bytesToSize(bytes, precision, si)
 	}
 }
 
+function formatNetSpeed(bits_per_sec) {
+	var net_speed = "";
+
+	if (bits_per_sec < 1000) {
+		net_speed = bits_per_sec + "B";
+	} else if (bits_per_sec < 1000*1000) {
+		net_speed = (bits_per_sec/1000).toFixed(2) + "K";
+	} else if (bits_per_sec < 1000*1000*1000) {
+		net_speed = (bits_per_sec/1000/1000).toFixed(2) + "M";
+	} else {
+		net_speed = (bits_per_sec/1000/1000/1000).toFixed(2) + "G";
+	}
+
+	return net_speed;
+}
+
 function uptime() {
 	$.getJSON("json/stats.json", function(result) {
 		$("#loading-notice").remove();
 		if(result.reload)
 			setTimeout(function() { location.reload(true) }, 1000);
+
+		// bandwidth total variables
+		var totalIncomingBW = 0;
+		var totalOutgoingBW = 0;
 
 		for (var i = 0; i < result.servers.length; i++) {
 			var TableRow = $("#servers tr#r" + i);
@@ -197,6 +217,12 @@ function uptime() {
 					netstr += (result.servers[i].network_tx/1000/1000).toFixed(1) + "M";
 				TableRow.children["network"].innerHTML = netstr;
 
+				// Bandwidth
+				if (!isNaN(result.servers[i].network_rx))
+					totalIncomingBW += result.servers[i].network_rx;
+				if (!isNaN(result.servers[i].network_tx))
+					totalOutgoingBW += result.servers[i].network_tx;
+
 				// CPU
 				if (result.servers[i].cpu >= 90)
 					TableRow.children["cpu"].children[0].children[0].className = "progress-bar progress-bar-danger";
@@ -241,6 +267,10 @@ function uptime() {
 				}
 			}
 		};
+
+		// Update bandwidth totals
+		$('#bandwidth-incoming').html(formatNetSpeed(totalIncomingBW));
+		$('#bandwidth-outgoing').html(formatNetSpeed(totalOutgoingBW));
 
 		d = new Date(result.updated*1000);
 		error = 0;
