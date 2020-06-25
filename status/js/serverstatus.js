@@ -150,7 +150,7 @@ function uptime() {
 				TableRow.children["online6"].children[0].children[0].innerHTML = "<small>Up</small>";
 			} else {
 				TableRow.children["online6"].children[0].children[0].className = "progress-bar progress-bar-danger";
-				TableRow.children["online6"].children[0].children[0].innerHTML = "<small>Down</small>";
+				TableRow.children["online6"].children[0].children[0].innerHTML = "<small>Off</small>";
 			}
 
 			// Name
