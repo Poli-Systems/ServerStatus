@@ -82,7 +82,7 @@ while $RUNNING; do
 		# Memory
 		MemTotal=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
 		MemFree=$(awk '/MemFree/ {print $2}' /proc/meminfo)
-		Cached=$(awk '/\<Cached\>/ {print $2}' /proc/meminfo)
+		Cached=$(awk '/^Cached/ {print $2}' /proc/meminfo)
 		MemUsed=$(($MemTotal - ($Cached + $MemFree)))
 		SwapTotal=$(awk '/SwapTotal/ {print $2}' /proc/meminfo)
 		SwapFree=$(awk '/SwapFree/ {print $2}' /proc/meminfo)
