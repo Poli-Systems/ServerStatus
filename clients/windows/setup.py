@@ -26,8 +26,7 @@ opts = {
             "PSAPI.DLL"
         ],
         'includes': [
-            'psutil',
-            '_psutil_mswindows'
+            'psutil'
         ]
     }
 }
